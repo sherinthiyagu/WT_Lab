@@ -1,112 +1,140 @@
+let firstNumber = "";
+let operator = "";
+let newNumber = true;
 
-let display = document.getElementById("display");
+const display = document.getElementById("display");
 
+function addNumber(number) {
 
-let expression = "";
+    if (newNumber) {
+        display.value = "";
+        newNumber = false;
+    }
 
+    if (number === "." && display.value.includes(".")) {
+        return;
+    }
 
-let buttons = document.querySelectorAll("button");
+    display.value += number;
+}
 
+function chooseOperator(selectedOperator) {
 
-buttons.forEach(function(button){
+    firstNumber = Number(display.value);
 
-    button.onclick = function(){
+    operator = selectedOperator;
 
-        let value = button.innerText;
+    newNumber = true;
+}
 
-        
-        if(value == "×"){
-            value = "*";
+function calculateResult() {
+
+    let secondNumber = Number(display.value);
+    let result;
+
+    if (operator === "+") {
+        result = firstNumber + secondNumber;
+    }
+
+    else if (operator === "-") {
+        result = firstNumber - secondNumber;
+    }
+
+    else if (operator === "*") {
+        result = firstNumber * secondNumber;
+    }
+
+    else if (operator === "/") {
+
+        if (secondNumber === 0) {
+            display.value = "Error";
+            return;
         }
 
-        if(value == "÷"){
-            value = "/";
-        }
+        result = firstNumber / secondNumber;
+    }
 
-        if(value == "="){
+    display.value = result;
 
-            try{
-                expression = eval(expression).toString();
-                display.value = expression;
-            }
-            catch{
-                display.value = "Error";
-                expression = "";
-            }
+    newNumber = true;
+    operator = "";
+}
 
-        }
+function clearAll() {
 
-        else if(value == "C"){
+    display.value = "0";
 
-            expression = "";
-            display.value = "";
+    firstNumber = "";
+    operator = "";
 
-        }
+    newNumber = true;
+}
 
-        
-        else if(value == "CE"){
+function clearEntry() {
 
-            expression = "";
-            display.value = "";
+    display.value = "0";
 
-        }
+    newNumber = true;
+}
 
-       
-        else if(value == "⌫"){
+function backspace() {
 
-            expression = expression.slice(0,-1);
-            display.value = expression;
+    if (display.value.length > 1) {
+        display.value = display.value.slice(0, -1);
+    }
 
-        }
+    else {
+        display.value = "0";
+    }
+}
 
-       
-        else if(value == "x²"){
+function changeSign() {
 
-            expression = (Number(expression) * Number(expression)).toString();
-            display.value = expression;
+    display.value = Number(display.value) * -1;
+}
 
-        }
+function calculate(type) {
 
-       
-        else if(value == "√"){
+    let number = Number(display.value);
+    let result;
 
-            expression = Math.sqrt(Number(expression)).toString();
-            display.value = expression;
+    if (type === "percent") {
+        result = number / 100;
+    }
 
-        }
+    else if (type === "sin") {
+        result = Math.sin(number * Math.PI / 180);
+    }
 
-       
-        else if(value == "1/x"){
+    else if (type === "cos") {
+        result = Math.cos(number * Math.PI / 180);
+    }
 
-            expression = (1 / Number(expression)).toString();
-            display.value = expression;
+    else if (type === "tan") {
+        result = Math.tan(number * Math.PI / 180);
+    }
 
-        }
+    else if (type === "sqrt") {
+        result = Math.sqrt(number);
+    }
 
-       
-        else if(value == "%"){
+    else if (type === "square") {
+        result = number * number;
+    }
 
-            expression = (Number(expression) / 100).toString();
-            display.value = expression;
+    else if (type === "log") {
+        result = Math.log10(number);
+    }
 
-        }
+    else if (type === "ln") {
+        result = Math.log(number);
+    }
 
-      
-        else if(value == "±"){
+    else if (type === "reciprocal") {
+        result = 1 / number;
+    }
 
-            expression = (-Number(expression)).toString();
-            display.value = expression;
+    display.value = result;
 
-        }
-
-        
-        else{
-
-            expression += value;
-            display.value = expression;
-
-        }
-
-    };
-
-});
+    newNumber = true;
+}
