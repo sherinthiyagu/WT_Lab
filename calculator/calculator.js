@@ -24,6 +24,22 @@ function chooseOperator(selectedOperator) {
 
     operator = selectedOperator;
 
+    if (selectedOperator === "+") {
+        display.value = firstNumber + " +";
+    }
+
+    else if (selectedOperator === "-") {
+        display.value = firstNumber + " −";
+    }
+
+    else if (selectedOperator === "*") {
+        display.value = firstNumber + " ×";
+    }
+
+    else if (selectedOperator === "/") {
+        display.value = firstNumber + " ÷";
+    }
+
     newNumber = true;
 }
 
@@ -48,6 +64,7 @@ function calculateResult() {
 
         if (secondNumber === 0) {
             display.value = "Error";
+            newNumber = true;
             return;
         }
 
