@@ -1,83 +1,115 @@
-/* Whole Page */
-body{
-    margin:0;
-    padding:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-
-    background:
-        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-        url("spider1.jpg");
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-/* Calculator Box */
-.calculator{
-    width:330px;
-    background:#e98b8b;
-    padding:20px;
-    border-radius:15px;
-    border:4px solid #0066cc;
-    box-shadow:0 0 25px red;
+body {
+    min-height: 100vh;
+    background: black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Heading */
-h1{
-    text-align:center;
-    color:white;
-    margin-bottom:20px;
+.calculator {
+    width: 400px;
+    padding: 25px;
+
+    border: 4px solid #555;
+    border-radius: 15px;
+
+    background: black;
 }
 
-/* Display */
-#display{
-    width:100%;
-    height:60px;
-    font-size:28px;
-    text-align:right;
-    border:none;
-    border-radius:10px;
-    margin-bottom:20px;
-    padding-right:10px;
-    background:#111;
-    color:#00d9ff;
-    box-sizing:border-box;
+.calculator h1 {
+    color: white;
+    text-align: center;
+    font-size: 38px;
+    margin-bottom: 30px;
 }
 
-/* Button Layout */
-.buttons{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
+#display {
+    width: 100%;
+    height: 85px;
+
+    background: black;
+    color: white;
+
+    border: 2px solid #f5a000;
+    border-radius: 15px;
+
+    text-align: right;
+    font-size: 35px;
+
+    padding: 15px;
+    margin-bottom: 25px;
 }
 
-/* Normal Buttons */
-button{
-    height:60px;
-    font-size:22px;
-    border:none;
-    border-radius:50%;
-    background:#222;
-    color:white;
-    cursor:pointer;
-    transition:0.3s;
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
 }
 
-/* Hover Effect */
-button:hover{
-    background:#0066cc;
-    transform:scale(1.08);
+button {
+    height: 65px;
+
+    border: none;
+    border-radius: 50%;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    cursor: pointer;
 }
 
-/* Operator Buttons */
-.operator{
-    background:#0066cc;
+.number,
+.function,
+.scientific {
+    background: #666;
+    color: white;
 }
 
-.operator:hover{
-    background:red;
+.operator,
+.equal {
+    background: #f59b00;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.equal {
+    border-radius: 15px;
+    height: 140px;
+    grid-row: span 2;
+}
+
+@media (max-width: 500px) {
+
+    .calculator {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .calculator h1 {
+        font-size: 30px;
+    }
+
+    #display {
+        font-size: 28px;
+    }
+
+    button {
+        height: 55px;
+        font-size: 17px;
+    }
+
+    .equal {
+        height: 120px;
+    }
 }
