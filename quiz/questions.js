@@ -150,7 +150,7 @@ options: ["<line>", "<br>", "<hr>", "<hl>"],
 answer: 2
 },
 
-```
+
 {
     category: "CSS",
     question: "Which property is used to create a Flexbox container?",
